@@ -8,28 +8,20 @@ import java.util.Arrays;
  * @Package com.nyaxs.algorithm
  * @date 2020/6/26 19:58
  */
-public class InsertSort {
+public class InsertSort<T> {
 
     public static void main(String[] args) {
-        int[] a = {8,3,2,6,4,5,1,9};
+        Integer[] a = {8,3,2,6,4,5,1,9};
         System.out.println(Arrays.toString(insertSort(a)));
 
     }
 
-    public static int[] copyArray(int[] a){
-        int[] array = new int[a.length];
-        for (int i = 0; i < a.length; i++) {
-            array[i] = a[i];
-        }
-        return array;
-    }
-
-    public static int[] insertSort(int[] a){
-        int[] array = copyArray(a);
+    public static <T extends Comparable<T>> T[] insertSort(T[] a){
+        T[] array = Arrays.copyOf(a,a.length);
         for (int i = 1; i < array.length; i++) {
-            int temp = array[i];
+            T temp = array[i];
             int j = i;
-            while (j > 0 && temp < array[j-1]){
+            while (j > 0 && temp.compareTo(array[j-1])<0){
                 array[j] = array[j-1];
                 j--;
             }
